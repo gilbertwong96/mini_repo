@@ -20,11 +20,12 @@ config :mini_repo,
       upstream_url: "https://repo.hex.pm",
 
       # only mirror following packages
-      only: ~w(decimal),
+      # only: ~w(decimal),
 
       # 5min
-      sync_interval: 5 * 60 * 1000,
-      sync_opts: [max_concurrency: 1],
+      sync_interval: 60 * 60 * 1000,
+      # , on_timeout: :kill_task
+      sync_opts: [max_concurrency: 25, on_timeout: :kill_task],
 
       # https://hex.pm/docs/public_keys
       upstream_public_key: """

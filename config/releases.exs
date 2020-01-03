@@ -55,9 +55,11 @@ config :mini_repo,
       """,
 
       # only mirror following packages
-      only: ~w(decimal),
+      # only: ~w(decimal),
 
       # 5min
-      sync_interval: 5 * 60 * 1000
+      sync_interval: 60 * 60 * 1000,
+      # , on_timeout: :kill_task
+      sync_opts: [max_concurrency: 25, on_timeout: :kill_task]
     ]
   ]
